@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{>headerlink}}
+</head>
+<body>
+<body>
+    {{>navbar}}
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 col-12 mx-auto">
+            <div class="main_content">
+            <form class="temp_form">
+                <input type="text" id="cityName" class="input1" placeholder="Enter your city name" autocomplete="off">
+                <input type="submit" value="Serch" id="serchbtn" class="text-center">
+            </form>
+            </div>
+            <div class="tempinfo">
+                <div class="toplayer shadow-lg">
+                    <p id="day">Tuesday</p>
+                    <p id="today_date">28 sept</p>
+                </div>
+                <div class="main_layer">
+                    <p id="city_name">Get Output here</p>
+                    <div class="middle_layer data_hide">
+                        <p ><span id="temp">0</span><sup>o</sup>C</p>
+                        <p id="temp_status"><i class="fa fa-cloud" aria-hidden="true"></i> </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    {{>footer}}
+    <script src="js/main.js"></script>
+    <script>
+        const getcurday =()=>{
+        var weekday = new Array(7);
+         weekday[0] = "Sunday";
+         weekday[1] = "Monday";
+         weekday[2] = "Tuesday";
+         weekday[3] = "Wednesday";
+         weekday[4] = "Thursday";
+         weekday[5] = "Friday";
+         weekday[6] = "Saturday";
+        let curTime=new Date();
+        const days=(weekday[curTime.getDay()]);
+        let day=document.getElementById('day');
+         day.innerText=days;
+    };
+    getcurday();
+       
+     const nowCurrTime=()=>{
+      var months=[
+          "Jan",
+          "Feb",
+          "Mar",
+          "Apr ",
+          "May",
+          "June",
+          "July",
+          "Aug",
+          "Sept",
+          "Oct",
+          "Nov",
+          "Dec"
+      ]
+      var now=new Date();
+      var month=months[now.getMonth() ];
+      var date=now.getDate();
+
+      var hour=now.getHours();
+      var mins=now.getMinutes();
+      let period="am"
+      if(hour>11){
+          period="pm";
+          if(hour>12) hour -= 12;
+      }
+      if(mins<10){
+          mins="0"+mins;
+      }
+      return `${month}/${date} | ${hour}:${mins}${period}`;
+  }
+  let today_date=document.getElementById('today_date');
+  today_date.innerHTML=nowCurrTime();
+
+
+    </script>
+</body>
+</html>
